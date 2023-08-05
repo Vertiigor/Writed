@@ -1,0 +1,18 @@
+﻿@page
+@model Writed.Pages.Communities.IndexModel
+@{
+    ViewData["Title"] = "Community";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="search-container">
+            <form method="post">
+                <input type="text" id="search" placeholder="Searching..." asp-for="Input.SearchString">
+                <button type="submit" id="search-button" asp-page-handler="Search">Search</button>
+                <button type="submit" id="search-button" asp-page-handler="CreateNewCommunity" class="button-26">Create community</button>
+            </form>
+        </div>
+    </div>
+</div>

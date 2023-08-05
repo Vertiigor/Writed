@@ -1,0 +1,44 @@
+﻿@page "{id}"
+@model Writed.Pages.Posts.PostModel
+
+@{
+    ViewData["Title"] = "Post";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Post</h1>
+
+<div>
+    <section>
+        <h3>@Model.Post.Title</h3>
+        <p class="date">@Model.Post.CreatedDate.ToShortDateString()</p>
+        <p>@Model.Post.Content</p>
+    </section>
+    <hr />
+    <h1>Comments</h1>
+    <hr />
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="Input.CommentContet" class="control-label"></label>
+            <textarea rows="4" cols="50" maxlength="500" asp-for="Input.CommentContet" class="form-control"></textarea>
+            <span asp-validation-for="Input.CommentContet" class="text-danger"></span>
+        </div>
+        <button type="submit" class="button-26" asp-route-postId="@Model.Post.Id">Отправить</button>
+    </form>
+    <dl>
+        @foreach (var comment in Model.Comments)
+        {
+            <dd>
+                <section>
+                    <h3>@comment.User.UserName</h3>
+                    <p class="date">@comment.CreatedDate.ToString("d MMMM h:mm tt yyyy")</p>
+                    <p>@comment.Content</p>
+                </section>
+            </dd>
+        }
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Post?.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

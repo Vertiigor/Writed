@@ -1,0 +1,160 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    background-color: #030303;
+    margin-bottom: 60px;
+    color-scheme: dark;
+}
+
+.button-26 {
+    appearance: button;
+    background-color: #ff6ec7;
+    border: 1px solid #aa4a71;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: Graphik,-apple-system,system-ui,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+    font-size: 14px;
+    line-height: 1.15;
+    overflow: visible;
+    padding: 12px 16px;
+    position: relative;
+    text-align: center;
+    text-transform: none;
+    transition: all 80ms ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: fit-content;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.button-26:disabled {
+    opacity: .5;
+}
+
+.button-26:focus {
+    outline: 0;
+}
+
+    .button-26:hover {
+        background-color: #aa4a71;
+        border-color: #aa4a71;
+    }
+
+    .button-26:active {
+        background-color: #7b304d;
+        border-color: #7b304d;
+    }
+
+.search-container {
+    display: flex;
+    justify-content: center;
+}
+
+input[type="text"] {
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    background-color: #1a1a1b;
+}
+
+input[type=text]:focus {
+    border: 3px solid #ff61a3;
+}
+
+button {
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #ff6ec7;
+    color: #fff;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+    button:hover {
+        background-color: #aa4a71;
+    }
+
+@font-face {
+    font-family: "Mistral";
+    src: local('../fonts/mistral.ttf');
+}
+
+h1 {
+    font-family: 'Mistral';
+    color: #ff6ec7;
+    font-size: 6em;
+    text-align: center;
+}
+
+h3 {
+    color: #dce0e2;
+}
+
+.center {
+    border: 5px solid #ff6ec7;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+section,
+aside,
+article,
+div,
+img {
+    box-sizing: border-box;
+}
+
+    section img {
+        width: 100%;
+    }
+
+section {
+    width: var(--width);
+    background: #1a1a1b;
+    border: 2px solid #343536;
+    border-radius: 4px;
+    padding: 25px;
+}
+
+    section h3 {
+        font-size: calc(var(--width)/10);
+    }
+
+    section p {
+        font-family: var(--text-font);
+        color: #d1d4d5;
+        font-size: calc(var(--width)/20);
+    }
+
+.date {
+    font-size: calc(var(--width)/25);
+}
+
+section a {
+    text-decoration: none;
+    color: var(--bg);
+    font-family: var(--title-font);
+    font-weight: 700;
+    font-size: calc(var(--width)/23);
+}
