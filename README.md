@@ -2,6 +2,8 @@
 
 ### Writed - my small pet-project of social network, like Reddit.
 
+### Now it is very simple, but I will try to improve it and learn more :3
+
 ## Current functions:
 - Authentication & authorization.
 - Creating and viewing thematic communities.
