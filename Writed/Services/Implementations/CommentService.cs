@@ -30,7 +30,7 @@ namespace Writed.Services.Implementations
                 CreatedDate = DateTime.UtcNow.ToUniversalTime(),
                 User = user
             };
-
+            
             context.Comments.Add(newComment);
             await context.SaveChangesAsync();
         }

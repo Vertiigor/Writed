@@ -18,15 +18,15 @@ namespace Writed.Pages.Communities
     [Authorize("IsAnAdult")]
     public class CreateModel : PageModel
     {
-        private readonly Writed.Data.ApplicationContext _context;
-        private readonly UserManager<User> _userManager;
-        private readonly ICommunityService _communityService;
+        private readonly Writed.Data.ApplicationContext context;
+        private readonly UserManager<User> userManager;
+        private readonly ICommunityService communityService;
 
         public CreateModel(Writed.Data.ApplicationContext context, UserManager<User> userManager, ICommunityService communityService)
         {
-            _context = context;
-            _userManager = userManager;
-            _communityService = communityService;
+            this.context = context;
+            this.userManager = userManager;
+            this.communityService = communityService;
         }
 
         public IActionResult OnGet()
@@ -52,16 +52,16 @@ namespace Writed.Pages.Communities
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Communities == null)
+          if (!ModelState.IsValid || context.Communities == null)
           {
                 return Page();
           }
 
             // Getting current user
-            var user = await _userManager.GetUserAsync(User);
+            var user = await userManager.GetUserAsync(User);
 
             // Creating new community
-            await _communityService.CreateCommunityAsync(Input.Name, Input.Description, user);
+            await communityService.CreateCommunityAsync(Input.Name, Input.Description, user);
 
             return RedirectToPage("/Index");
         }
