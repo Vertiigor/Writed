@@ -27,7 +27,7 @@ namespace Writed.Services.Implementations
             Post newPost = new Post()
             {
                 Id = Guid.NewGuid().ToString(),
-                User = user,
+                Author = user,
                 Title = title,
                 Content = content,
                 CreatedDate = DateTime.UtcNow.ToUniversalTime(),

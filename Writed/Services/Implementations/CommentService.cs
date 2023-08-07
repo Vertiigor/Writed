@@ -28,7 +28,7 @@ namespace Writed.Services.Implementations
                 Content = content,
                 Post = post,
                 CreatedDate = DateTime.UtcNow.ToUniversalTime(),
-                User = user
+                Author = user
             };
             
             context.Comments.Add(newComment);

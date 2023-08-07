@@ -44,7 +44,7 @@ namespace Writed.Pages.Communities
                 Community = community;
             }
 
-            Posts = context.Posts.Include(post => post.User).Where(post => post.Community.Id == community.Id).ToList();
+            Posts = context.Posts.Include(post => post.Author).Where(post => post.Community.Id == community.Id).ToList();
 
             return Page();
         }

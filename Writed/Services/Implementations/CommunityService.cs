@@ -14,14 +14,14 @@ namespace Writed.Services.Implementations
             this.context = context;
         }
 
-        public async Task CreateCommunityAsync(string name, string description, User currentUser)
+        public async Task CreateCommunityAsync(string name, string description, User user)
         {
             Community community = new Community()
             {
                 Id = Guid.NewGuid().ToString(),
                 Name = name,
                 CreatedDate = DateTime.UtcNow.ToUniversalTime(),
-                AuthorId = currentUser.Id,
+                Author = user,
                 Description = description,
                 Posts = new List<Post>()
             };

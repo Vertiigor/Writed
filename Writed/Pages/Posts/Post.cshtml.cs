@@ -59,7 +59,7 @@ namespace Writed.Pages.Posts
                 Post = post;
             }
 
-            Comments = context.Comments.Include(comment => comment.User).Where(comment => comment.Post.Id == Post.Id).ToList();
+            Comments = context.Comments.Include(comment => comment.Author).Where(comment => comment.Post.Id == Post.Id).ToList();
 
             return Page();
         }
