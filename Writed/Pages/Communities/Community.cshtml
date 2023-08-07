@@ -10,9 +10,7 @@
 
 <div>
     <h4>Community</h4>
-    <form method="post">
-        <button type="submit" id="search-button" asp-page-handler="CreateNewPost" asp-route-communityName="@Model.Community.Name" class="button-26">Create Post</button>
-    </form>
+    <a asp-page="/Posts/Create" asp-route-communityName="@Model.Community.Name" class="button-26">Create Post</a>
     <hr />
     <dl>
         @foreach(var post in Model.Posts)
@@ -21,17 +19,11 @@
             <section>
                 <h2>Author: @post.Author.UserName</h2>
                 <h3>@post.Title</h3>
-                <p class="date">@post.CreatedDate.ToShortDateString()</p>
+                <p class="date">@post.CreatedDate.ToString("d MMMM h:mm tt yyyy")</p>
                 <p>@post.Content</p>
-                <form method="post">
-                    <button type="submit" id="search-button" asp-page-handler="ReadMore" asp-route-postId="@post.Id" class="button-26">Read More</button>
-                </form>
+                <a asp-page="/Posts/Post" asp-route-id="@post.Id" class="button-26">Read More</a>
             </section>
             </dd>
         }
         </dl>
-</div>
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.Community?.Id">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
 </div>

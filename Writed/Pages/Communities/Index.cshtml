@@ -11,7 +11,7 @@
             <form method="post">
                 <input type="text" id="search" placeholder="Searching..." asp-for="Input.SearchString">
                 <button type="submit" id="search-button" asp-page-handler="Search">Search</button>
-                <button type="submit" id="search-button" asp-page-handler="CreateNewCommunity" class="button-26">Create community</button>
+                <a asp-page="Create" class="button-26">Create community</a>
             </form>
         </div>
     </div>

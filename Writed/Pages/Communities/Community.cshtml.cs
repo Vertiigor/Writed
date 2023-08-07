@@ -48,15 +48,5 @@ namespace Writed.Pages.Communities
 
             return Page();
         }
-
-        public IActionResult OnPostCreateNewPost(string communityName)
-        {
-            return RedirectToPage("/Posts/Create", new { communityName = communityName });
-        }
-
-        public IActionResult OnPostReadMore(string postId)
-        {
-            return RedirectToPage("/Posts/Post", new { id = postId });
-        }
     }
 }

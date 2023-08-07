@@ -20,10 +20,5 @@ namespace Writed.Pages.Communities
         {
             return RedirectToPage("Community", new { communityName = Input.SearchString });
         }
-
-        public IActionResult OnPostCreateNewCommunity()
-        {
-            return RedirectToPage("Create");
-        }
     }
 }
