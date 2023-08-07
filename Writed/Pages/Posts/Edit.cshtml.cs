@@ -1,23 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Writed.Data;
 using Writed.Models;
 
 namespace Writed.Pages.Posts
 {
+    [Authorize]
     public class EditModel : PageModel
     {
         private readonly Writed.Data.ApplicationContext context;
+        private readonly IAuthorizationService authService;
 
-        public EditModel(Writed.Data.ApplicationContext context)
+        public EditModel(Writed.Data.ApplicationContext context, IAuthorizationService authService)
         {
             this.context = context;
+            this.authService = authService;
         }
 
         [BindProperty]
@@ -31,12 +30,21 @@ namespace Writed.Pages.Posts
             }
 
             var post =  await context.Posts.FirstOrDefaultAsync(m => m.Id == id);
+
             if (post == null)
             {
                 return NotFound();
             }
+
+            var authResult = await authService.AuthorizeAsync(User, post, "CanEdit");
+
+            if (!authResult.Succeeded)
+            {
+                return new ForbidResult();
+            }
+
             Post = post;
-           ViewData["CommunityId"] = new SelectList(context.Communities, "Id", "Id");
+
             return Page();
         }
 

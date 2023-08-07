@@ -30,15 +30,17 @@ namespace Writed
 
             builder.Services.AddAuthorization(options =>
             {
-                options.AddPolicy(
-                    "IsAnAdult",
-                    policyBuilder =>
-                    {
+                options.AddPolicy("IsAnAdult", policyBuilder =>
+                {
                         policyBuilder.RequireAuthenticatedUser();
                         policyBuilder.AddRequirements(
                         new MinimumAgeRequirement(MinimumAge));
-                    }
-                    );
+                });
+
+                options.AddPolicy("CanEdit", policyBuilder =>
+                {
+                    policyBuilder.AddRequirements(new IsAuthorRequirement());
+                });
             });
 
             builder.Services.AddScoped<ICommunityService, CommunityService>();
@@ -46,6 +48,7 @@ namespace Writed
             builder.Services.AddScoped<ICommentService, CommentService>();
 
             builder.Services.AddSingleton<IAuthorizationHandler, MinimumAgeHandler>();
+            builder.Services.AddScoped<IAuthorizationHandler, IsAuthorHandler>();
 
             var app = builder.Build();
 
