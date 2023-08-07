@@ -15,12 +15,13 @@ namespace Writed.Pages.Posts
         private readonly UserManager<User> userManager;
         private readonly ICommentService commentService;
         private readonly IAuthorizationService authService;
+        private readonly IPostService postService;
 
         public Post Post { get; set; }
         public List<Comment> Comments { get; set; }
         public bool CanEdit { get; set; }
 
-        public PostModel(Writed.Data.ApplicationContext context, UserManager<User> userManager, ICommentService commentService, IAuthorizationService authService)
+        public PostModel(Writed.Data.ApplicationContext context, UserManager<User> userManager, ICommentService commentService, IAuthorizationService authService, IPostService postService)
         {
             this.context = context;
             this.userManager = userManager;
@@ -29,6 +30,7 @@ namespace Writed.Pages.Posts
             Post = new Post();
             Comments = new List<Comment>();
             CanEdit = false;
+            this.postService = postService;
         }
 
         [BindProperty]
@@ -48,7 +50,7 @@ namespace Writed.Pages.Posts
                 return NotFound();
             }
 
-            var post = await context.Posts.FirstOrDefaultAsync(post => post.Id == id);
+            var post = await postService.GetPostAsync(id);
 
             if (post == null)
             {
@@ -63,7 +65,7 @@ namespace Writed.Pages.Posts
 
             CanEdit = authResult.Succeeded;
 
-            Comments = context.Comments.Include(comment => comment.Author).Where(comment => comment.Post.Id == Post.Id).ToList();
+            Comments = await commentService.GetCommentsAsync(post);
 
             return Page();
         }

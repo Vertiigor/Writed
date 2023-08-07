@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Writed.Models;
+using Writed.Services.Interfaces;
 
 namespace Writed.Pages.Posts
 {
@@ -12,11 +13,13 @@ namespace Writed.Pages.Posts
     {
         private readonly Writed.Data.ApplicationContext context;
         private readonly IAuthorizationService authService;
+        private readonly IPostService postService;
 
-        public EditModel(Writed.Data.ApplicationContext context, IAuthorizationService authService)
+        public EditModel(Writed.Data.ApplicationContext context, IAuthorizationService authService, IPostService postService)
         {
             this.context = context;
             this.authService = authService;
+            this.postService = postService;
         }
 
         [BindProperty]
@@ -29,7 +32,7 @@ namespace Writed.Pages.Posts
                 return NotFound();
             }
 
-            var post =  await context.Posts.FirstOrDefaultAsync(m => m.Id == id);
+            var post = await postService.GetPostAsync(id);
 
             if (post == null)
             {

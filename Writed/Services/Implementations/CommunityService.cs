@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using Writed.Data;
 using Writed.Models;
 using Writed.Services.Interfaces;
@@ -28,6 +30,13 @@ namespace Writed.Services.Implementations
 
             context.Communities.Add(community);
             await context.SaveChangesAsync();
+        }
+
+        public async Task<Community> GetCommunityAsync(string communityName)
+        {
+            var community = await context.Communities.FirstOrDefaultAsync(community => community.Name == communityName);
+
+            return community;
         }
     }
 }

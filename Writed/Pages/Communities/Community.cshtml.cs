@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Writed.Data;
 using Writed.Models;
+using Writed.Services.Interfaces;
 
 namespace Writed.Pages.Communities
 {
@@ -15,14 +16,18 @@ namespace Writed.Pages.Communities
     public class CommunityModel : PageModel
     {
         private readonly Writed.Data.ApplicationContext context;
+        private readonly ICommunityService communityService;
+        private readonly IPostService postService;
         public List<Post> Posts { get; set; }
         public Community Community { get; set; } 
 
-        public CommunityModel(Writed.Data.ApplicationContext context)
+        public CommunityModel(Writed.Data.ApplicationContext context, IPostService postService, ICommunityService communityService)
         {
             this.context = context;
+            this.postService = postService;
             Posts = new List<Post>();
             Community = new Community();
+            this.communityService = communityService;
         }
 
 
@@ -33,7 +38,7 @@ namespace Writed.Pages.Communities
                 return NotFound();
             }
 
-            var community = await context.Communities.FirstOrDefaultAsync(community => community.Name == communityName);
+            var community = await communityService.GetCommunityAsync(communityName);
 
             if (community == null)
             {
@@ -44,7 +49,7 @@ namespace Writed.Pages.Communities
                 Community = community;
             }
 
-            Posts = context.Posts.Include(post => post.Author).Where(post => post.Community.Id == community.Id).ToList();
+            Posts = await postService.GetPostsAsync(community);
 
             return Page();
         }

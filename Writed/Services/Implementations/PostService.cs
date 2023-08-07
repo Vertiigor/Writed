@@ -37,5 +37,19 @@ namespace Writed.Services.Implementations
             context.Posts.Add(newPost);
             await context.SaveChangesAsync();
         }
+
+        public async Task<Post> GetPostAsync(string id)
+        {
+            var post = await context.Posts.FirstOrDefaultAsync(post => post.Id == id);
+
+            return post;
+        }
+
+        public async Task<List<Post>> GetPostsAsync(Community community)
+        {
+            var posts = await context.Posts.Include(post => post.Author).Where(post => post.Community.Id == community.Id).ToListAsync();
+
+            return posts;
+        }
     }
 }

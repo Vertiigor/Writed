@@ -1,4 +1,5 @@
-﻿using Writed.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Writed.Data;
 using Writed.Models;
 using Writed.Services.Interfaces;
 
@@ -33,6 +34,20 @@ namespace Writed.Services.Implementations
             
             context.Comments.Add(newComment);
             await context.SaveChangesAsync();
+        }
+
+        public async Task<Comment> GetCommentAsync(string id)
+        {
+            var comment = await context.Comments.FirstOrDefaultAsync(comment => comment.Id == id);
+
+            return comment;
+        }
+
+        public async Task<List<Comment>> GetCommentsAsync(Post post)
+        {
+            var comments = await context.Comments.Include(comment => comment.Author).Where(comment => comment.Post.Id == post.Id).ToListAsync();
+
+            return comments;
         }
     }
 }
