@@ -51,5 +51,27 @@ namespace Writed.Services.Implementations
 
             return posts;
         }
+
+        public async Task UpdatePost(string title, string content, string id)
+        {
+            var existingPost = await context.Posts.FindAsync(id);
+
+            if (existingPost != null)
+            {
+                existingPost.Title = title;
+                existingPost.Content = content;
+
+                context.Attach(existingPost);
+
+                context.Entry(existingPost).State = EntityState.Modified;
+
+                await context.SaveChangesAsync();
+            }
+        }
+
+        public bool PostExists(string id)
+        {
+            return (context.Posts?.Any(post => post.Id == id)).GetValueOrDefault();
+        }
     }
 }

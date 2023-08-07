@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using Writed.Models;
 using Writed.Services.Interfaces;
 
@@ -22,8 +23,21 @@ namespace Writed.Pages.Posts
             this.postService = postService;
         }
 
-        [BindProperty]
         public Post Post { get; set; } = default!;
+
+        [BindProperty]
+        public InputModel Input { get; set; }
+
+        public class InputModel
+        {
+            [Required]
+            [Display(Name = "Name")]
+            public string Title { get; set; }
+
+            [Required]
+            [Display(Name = "Description")]
+            public string Content { get; set; }
+        }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -53,37 +67,16 @@ namespace Writed.Pages.Posts
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string id)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            context.Attach(Post).State = EntityState.Modified;
+            await postService.UpdatePost(Input.Title, Input.Content, id);
 
-            try
-            {
-                await context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PostExists(Post.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return RedirectToPage("./Index");
-        }
-
-        private bool PostExists(string id)
-        {
-          return (context.Posts?.Any(e => e.Id == id)).GetValueOrDefault();
+            return RedirectToPage("/Index");
         }
     }
 }

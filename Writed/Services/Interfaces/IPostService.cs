@@ -9,5 +9,9 @@ namespace Writed.Services.Interfaces
         public Task<Post> GetPostAsync(string id);
 
         public Task<List<Post>> GetPostsAsync(Community community);
+
+        public Task UpdatePost(string title, string content, string id);
+
+        public bool PostExists(string id);
     }
 }
