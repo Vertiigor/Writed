@@ -37,7 +37,7 @@ namespace Writed
                         new MinimumAgeRequirement(MinimumAge));
                 });
 
-                options.AddPolicy("CanEdit", policyBuilder =>
+                options.AddPolicy("CanManage", policyBuilder =>
                 {
                     policyBuilder.AddRequirements(new IsAuthorRequirement());
                 });

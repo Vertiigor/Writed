@@ -13,7 +13,7 @@
         <h3>@Model.Post.Title</h3>
         <p class="date">@Model.Post.CreatedDate.ToShortDateString()</p>
         <p>@Model.Post.Content</p>
-        @if (Model.CanEdit)
+        @if (Model.CanManage)
         {
             <a asp-page="Edit" asp-route-id="@Model.Post.Id"
                class="btn button-26">Edit</a>

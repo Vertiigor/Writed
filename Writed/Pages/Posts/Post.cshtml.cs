@@ -19,7 +19,7 @@ namespace Writed.Pages.Posts
 
         public Post Post { get; set; }
         public List<Comment> Comments { get; set; }
-        public bool CanEdit { get; set; }
+        public bool CanManage { get; set; }
 
         public PostModel(Writed.Data.ApplicationContext context, UserManager<User> userManager, ICommentService commentService, IAuthorizationService authService, IPostService postService)
         {
@@ -29,7 +29,7 @@ namespace Writed.Pages.Posts
             this.authService = authService;
             Post = new Post();
             Comments = new List<Comment>();
-            CanEdit = false;
+            CanManage = false;
             this.postService = postService;
         }
 
@@ -61,9 +61,9 @@ namespace Writed.Pages.Posts
                 Post = post;
             }
 
-            var authResult = await authService.AuthorizeAsync(User, post, "CanEdit");
+            var authResult = await authService.AuthorizeAsync(User, post, "CanManage");
 
-            CanEdit = authResult.Succeeded;
+            CanManage = authResult.Succeeded;
 
             Comments = await commentService.GetCommentsAsync(post);
 

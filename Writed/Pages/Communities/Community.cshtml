@@ -10,6 +10,14 @@
 
 <div>
     <div class="center row">
+        @if (Model.CanManage)
+        {
+            <a asp-page="Edit" asp-route-id="@Model.Community.Id"
+               class="btn button-26">Edit</a>
+@*            <form method="post">
+                <button type="submit" id="search-button" asp-page-handler="Delete" asp-route-postId="@Model.Post.Id">Delete</button>
+            </form>*@
+        }
         <p style="color: snow;">@Model.Community.Description</p>
     </div>
     <a asp-page="/Posts/Create" asp-route-communityName="@Model.Community.Name" class="button-26">Create Post</a>

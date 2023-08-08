@@ -54,14 +54,14 @@ namespace Writed.Services.Implementations
             return posts;
         }
 
-        public async Task UpdatePostAsync(string title, string content, string id)
+        public async Task UpdatePostAsync(Post post)
         {
-            var existingPost = await context.Posts.FindAsync(id);
+            var existingPost = await context.Posts.FindAsync(post.Id);
 
             if (existingPost != null)
             {
-                existingPost.Title = title;
-                existingPost.Content = content;
+                existingPost.Title = post.Title;
+                existingPost.Content = post.Content;
 
                 context.Attach(existingPost);
 

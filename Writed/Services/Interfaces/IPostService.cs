@@ -10,7 +10,7 @@ namespace Writed.Services.Interfaces
 
         public Task<List<Post>> GetPostsAsync(Community community);
 
-        public Task UpdatePostAsync(string title, string content, string id);
+        public Task UpdatePostAsync(Post post);
 
         public Task DeletePostAsync(Post post);
 

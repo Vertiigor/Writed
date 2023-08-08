@@ -38,5 +38,22 @@ namespace Writed.Services.Implementations
 
             return community;
         }
+
+        public async Task UpdateCommunityAsync(Community community)
+        {
+            var existingCommunity = await context.Communities.FindAsync(community.Id);
+
+            if (existingCommunity != null)
+            {
+                existingCommunity.Name = community.Name;
+                existingCommunity.Description = community.Description;
+
+                context.Attach(existingCommunity);
+
+                context.Entry(existingCommunity).State = EntityState.Modified;
+
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }

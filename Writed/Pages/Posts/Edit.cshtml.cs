@@ -54,7 +54,7 @@ namespace Writed.Pages.Posts
                 return NotFound();
             }
 
-            var authResult = await authService.AuthorizeAsync(User, post, "CanEdit");
+            var authResult = await authService.AuthorizeAsync(User, post, "CanManage");
 
             if (!authResult.Succeeded)
             {
@@ -78,7 +78,12 @@ namespace Writed.Pages.Posts
                 return Page();
             }
 
-            await postService.UpdatePostAsync(Input.Title, Input.Content, id);
+            var post = await postService.GetPostAsync(id);
+
+            post.Title = Input.Title;
+            post.Content = Input.Content;
+
+            await postService.UpdatePostAsync(post);
 
             return RedirectToPage("/Index");
         }
