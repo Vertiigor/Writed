@@ -6,10 +6,12 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>Community</h1>
+<h1>@Model.Community.Name</h1>
 
 <div>
-    <h4>Community</h4>
+    <div class="center row">
+        <p style="color: snow;">@Model.Community.Description</p>
+    </div>
     <a asp-page="/Posts/Create" asp-route-communityName="@Model.Community.Name" class="button-26">Create Post</a>
     <hr />
     <dl>

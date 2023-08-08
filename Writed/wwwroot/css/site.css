@@ -72,6 +72,7 @@ input[type="text"] {
     border: 1px solid #ccc;
     border-radius: 4px 0 0 4px;
     outline: none;
+    color: snow;
     background-color: #1a1a1b;
 }
 
@@ -157,4 +158,15 @@ section a {
     font-family: var(--title-font);
     font-weight: 700;
     font-size: calc(var(--width)/23);
+}
+
+textarea {
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    background-color: #1a1a1b;
+}
+
+textarea:focus {
+    border: 3px solid #ff61a3;
 }

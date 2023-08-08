@@ -21,12 +21,13 @@ namespace Writed.Pages.Posts
             this.context = context;
             this.authService = authService;
             this.postService = postService;
+            Input = new InputModel();
         }
 
         public Post Post { get; set; } = default!;
 
         [BindProperty]
-        public InputModel Input { get; set; }
+        public InputModel Input { get; set; } = default!;
 
         public class InputModel
         {
@@ -61,6 +62,9 @@ namespace Writed.Pages.Posts
             }
 
             Post = post;
+
+            Input.Title = Post.Title;
+            Input.Content = Post.Content;
 
             return Page();
         }

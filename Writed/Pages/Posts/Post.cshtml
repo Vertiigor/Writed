@@ -25,7 +25,7 @@
     <form method="post">
         <div class="form-group">
             <label asp-for="Input.CommentContet" class="control-label"></label>
-            <textarea rows="4" cols="50" maxlength="500" asp-for="Input.CommentContet" class="form-control"></textarea>
+            <textarea rows="4" cols="50" maxlength="500" asp-for="Input.CommentContet"></textarea>
             <span asp-validation-for="Input.CommentContet" class="text-danger"></span>
         </div>
         <button type="submit" class="button-26" asp-route-postId="@Model.Post.Id">Отправить</button>
