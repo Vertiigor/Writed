@@ -1,12 +1,11 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
-using Writed.Models;
+using Microsoft.EntityFrameworkCore;
 using Writed.Data;
-using Writed.Policies.Requirements;
+using Writed.Models;
 using Writed.Policies.Handlers;
-using Writed.Services.Interfaces;
+using Writed.Policies.Requirements;
 using Writed.Services.Implementations;
+using Writed.Services.Interfaces;
 
 namespace Writed
 {
@@ -32,9 +31,9 @@ namespace Writed
             {
                 options.AddPolicy("IsAnAdult", policyBuilder =>
                 {
-                        policyBuilder.RequireAuthenticatedUser();
-                        policyBuilder.AddRequirements(
-                        new MinimumAgeRequirement(MinimumAge));
+                    policyBuilder.RequireAuthenticatedUser();
+                    policyBuilder.AddRequirements(
+                    new MinimumAgeRequirement(MinimumAge));
                 });
 
                 options.AddPolicy("CanManage", policyBuilder =>

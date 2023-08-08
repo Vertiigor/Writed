@@ -57,15 +57,15 @@ namespace Writed.Pages.Posts
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync(string communityName)
         {
-          if (!ModelState.IsValid || context.Posts == null)
+            if (!ModelState.IsValid || context.Posts == null)
             {
                 return Page();
             }
 
-          // Получение текущего пользователя
-          var user = await userManager.GetUserAsync(User);
+            // Получение текущего пользователя
+            var user = await userManager.GetUserAsync(User);
 
-          await postService.CreatePostAsync(Input.Title, Input.Content, communityName, user);
+            await postService.CreatePostAsync(Input.Title, Input.Content, communityName, user);
 
             return RedirectToPage("/Index");
         }

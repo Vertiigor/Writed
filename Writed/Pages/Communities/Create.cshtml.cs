@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Writed.Data;
+using System.ComponentModel.DataAnnotations;
 using Writed.Models;
-using Writed.Services.Implementations;
 using Writed.Services.Interfaces;
 
 namespace Writed.Pages.Communities
@@ -52,10 +45,10 @@ namespace Writed.Pages.Communities
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || context.Communities == null)
-          {
+            if (!ModelState.IsValid || context.Communities == null)
+            {
                 return Page();
-          }
+            }
 
             // Getting current user
             var user = await userManager.GetUserAsync(User);

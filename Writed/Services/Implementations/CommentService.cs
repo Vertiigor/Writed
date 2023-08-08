@@ -31,7 +31,7 @@ namespace Writed.Services.Implementations
                 CreatedDate = DateTime.UtcNow.ToUniversalTime(),
                 Author = user
             };
-            
+
             context.Comments.Add(newComment);
             await context.SaveChangesAsync();
         }

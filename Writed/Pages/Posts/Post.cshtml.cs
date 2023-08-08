@@ -1,9 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using Writed.Models;
 using Writed.Services.Interfaces;
 
@@ -56,7 +55,7 @@ namespace Writed.Pages.Posts
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 Post = post;
             }
@@ -85,7 +84,7 @@ namespace Writed.Pages.Posts
             return RedirectToPage("/Index");
         }
 
-        public async  Task<IActionResult> OnPostDelete(string postId)
+        public async Task<IActionResult> OnPostDelete(string postId)
         {
             var post = await postService.GetPostAsync(postId);
 

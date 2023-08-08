@@ -19,12 +19,12 @@ namespace Writed.Policies.Handlers
         {
             var user = await userManager.GetUserAsync(context.User);
 
-            if(user == null)
+            if (user == null)
             {
                 return;
             }
 
-            if(resource.Author != null && resource.Author.Id == user.Id)
+            if (resource.Author != null && resource.Author.Id == user.Id)
             {
                 context.Succeed(requirement);
             }

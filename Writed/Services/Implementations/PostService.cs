@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration.UserSecrets;
 using Writed.Data;
 using Writed.Models;
 using Writed.Services.Interfaces;
@@ -21,7 +20,7 @@ namespace Writed.Services.Implementations
         {
             var community = context.Communities.FirstOrDefault(community => community.Name == communityName);
 
-            if(community == null)
+            if (community == null)
             {
                 return;
             }
@@ -89,7 +88,7 @@ namespace Writed.Services.Implementations
         {
             var posts = await GetPostsAsync(community);
 
-            foreach(var post in posts)
+            foreach (var post in posts)
             {
                 await DeletePostAsync(post);
             }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using System.Security.Claims;
 using Writed.Policies.Requirements;
 
 namespace Writed.Policies.Handlers

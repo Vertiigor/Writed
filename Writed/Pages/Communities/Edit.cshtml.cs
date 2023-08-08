@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Humanizer;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
-using Writed.Data;
+using System.ComponentModel.DataAnnotations;
 using Writed.Models;
-using Writed.Services.Implementations;
 using Writed.Services.Interfaces;
 
 namespace Writed.Pages.Communities
@@ -54,7 +45,7 @@ namespace Writed.Pages.Communities
                 return NotFound();
             }
 
-            var community =  await context.Communities.FirstOrDefaultAsync(community => community.Id == id);
+            var community = await context.Communities.FirstOrDefaultAsync(community => community.Id == id);
 
             if (community == null)
             {
@@ -72,7 +63,7 @@ namespace Writed.Pages.Communities
 
             Input.Name = Community.Name;
             Input.Description = Community.Description;
-            
+
             return Page();
         }
 
@@ -97,7 +88,7 @@ namespace Writed.Pages.Communities
 
         private bool CommunityExists(string id)
         {
-          return (context.Communities?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (context.Communities?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

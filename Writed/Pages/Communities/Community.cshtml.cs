@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
-using Writed.Data;
 using Writed.Models;
 using Writed.Services.Interfaces;
 
@@ -49,7 +42,7 @@ namespace Writed.Pages.Communities
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 Community = community;
             }
