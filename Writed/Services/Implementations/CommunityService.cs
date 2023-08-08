@@ -10,10 +10,12 @@ namespace Writed.Services.Implementations
     public class CommunityService : ICommunityService
     {
         private readonly Writed.Data.ApplicationContext context;
+        private readonly IPostService postService;
 
-        public CommunityService(ApplicationContext context)
+        public CommunityService(ApplicationContext context, IPostService postService)
         {
             this.context = context;
+            this.postService = postService;
         }
 
         public async Task CreateCommunityAsync(string name, string description, User user)
@@ -29,6 +31,15 @@ namespace Writed.Services.Implementations
             };
 
             context.Communities.Add(community);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task DeleteCommunityAsync(Community community)
+        {
+            await postService.DeletePostsAsync(community);
+
+            context.Communities.Remove(community);
+
             await context.SaveChangesAsync();
         }
 

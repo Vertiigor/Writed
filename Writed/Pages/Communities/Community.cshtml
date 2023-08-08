@@ -14,9 +14,9 @@
         {
             <a asp-page="Edit" asp-route-id="@Model.Community.Id"
                class="btn button-26">Edit</a>
-@*            <form method="post">
-                <button type="submit" id="search-button" asp-page-handler="Delete" asp-route-postId="@Model.Post.Id">Delete</button>
-            </form>*@
+            <form method="post">
+                <button type="submit" id="search-button" asp-page-handler="Delete" asp-route-communityName="@Model.Community.Name">Delete</button>
+            </form>
         }
         <p style="color: snow;">@Model.Community.Description</p>
     </div>

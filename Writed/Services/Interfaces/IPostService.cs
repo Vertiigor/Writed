@@ -14,6 +14,8 @@ namespace Writed.Services.Interfaces
 
         public Task DeletePostAsync(Post post);
 
+        public Task DeletePostsAsync(Community community);
+
         public bool PostExists(string id);
     }
 }

@@ -9,5 +9,7 @@ namespace Writed.Services.Interfaces
         public Task<Community> GetCommunityAsync(string communityName);
 
         public Task UpdateCommunityAsync(Community community);
+
+        public Task DeleteCommunityAsync(Community community);
     }
 }

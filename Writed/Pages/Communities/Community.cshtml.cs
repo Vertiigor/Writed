@@ -62,5 +62,14 @@ namespace Writed.Pages.Communities
 
             return Page();
         }
+
+        public async Task<IActionResult> OnPostDelete(string communityName)
+        {
+            var community = await communityService.GetCommunityAsync(communityName);
+
+            await communityService.DeleteCommunityAsync(community);
+
+            return RedirectToPage("/Index");
+        }
     }
 }

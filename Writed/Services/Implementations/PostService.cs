@@ -84,5 +84,15 @@ namespace Writed.Services.Implementations
 
             await context.SaveChangesAsync();
         }
+
+        public async Task DeletePostsAsync(Community community)
+        {
+            var posts = await GetPostsAsync(community);
+
+            foreach(var post in posts)
+            {
+                await DeletePostAsync(post);
+            }
+        }
     }
 }
