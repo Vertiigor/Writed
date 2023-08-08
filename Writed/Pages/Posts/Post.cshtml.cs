@@ -84,5 +84,14 @@ namespace Writed.Pages.Posts
 
             return RedirectToPage("/Index");
         }
+
+        public async  Task<IActionResult> OnPostDelete(string postId)
+        {
+            var post = await postService.GetPostAsync(postId);
+
+            await postService.DeletePostAsync(post);
+
+            return RedirectToPage("/Index");
+        }
     }
 }

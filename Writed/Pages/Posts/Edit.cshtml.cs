@@ -78,7 +78,7 @@ namespace Writed.Pages.Posts
                 return Page();
             }
 
-            await postService.UpdatePost(Input.Title, Input.Content, id);
+            await postService.UpdatePostAsync(Input.Title, Input.Content, id);
 
             return RedirectToPage("/Index");
         }

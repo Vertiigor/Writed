@@ -17,6 +17,9 @@
         {
             <a asp-page="Edit" asp-route-id="@Model.Post.Id"
                class="btn button-26">Edit</a>
+            <form method="post">
+                <button type="submit" id="search-button" asp-page-handler="Delete" asp-route-postId="@Model.Post.Id">Delete</button>
+            </form>
         }
     </section>
     <hr />
@@ -28,8 +31,10 @@
             <textarea rows="4" cols="50" maxlength="500" asp-for="Input.CommentContet"></textarea>
             <span asp-validation-for="Input.CommentContet" class="text-danger"></span>
         </div>
+        <hr />
         <button type="submit" class="button-26" asp-route-postId="@Model.Post.Id">Отправить</button>
     </form>
+    <hr />
     <dl>
         @foreach (var comment in Model.Comments)
         {

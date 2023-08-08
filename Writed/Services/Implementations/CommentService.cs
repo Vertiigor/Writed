@@ -36,6 +36,15 @@ namespace Writed.Services.Implementations
             await context.SaveChangesAsync();
         }
 
+        public async Task DeleteCommentsAsync(Post post)
+        {
+            var comments = await GetCommentsAsync(post);
+
+            context.RemoveRange(comments);
+
+            await context.SaveChangesAsync();
+        }
+
         public async Task<Comment> GetCommentAsync(string id)
         {
             var comment = await context.Comments.FirstOrDefaultAsync(comment => comment.Id == id);

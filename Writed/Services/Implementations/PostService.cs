@@ -9,10 +9,12 @@ namespace Writed.Services.Implementations
     public class PostService : IPostService
     {
         private readonly Writed.Data.ApplicationContext context;
+        private readonly ICommentService commentService;
 
-        public PostService(ApplicationContext context)
+        public PostService(ApplicationContext context, ICommentService commentService)
         {
             this.context = context;
+            this.commentService = commentService;
         }
 
         public async Task CreatePostAsync(string title, string content, string communityName, User user)
@@ -52,7 +54,7 @@ namespace Writed.Services.Implementations
             return posts;
         }
 
-        public async Task UpdatePost(string title, string content, string id)
+        public async Task UpdatePostAsync(string title, string content, string id)
         {
             var existingPost = await context.Posts.FindAsync(id);
 
@@ -72,6 +74,15 @@ namespace Writed.Services.Implementations
         public bool PostExists(string id)
         {
             return (context.Posts?.Any(post => post.Id == id)).GetValueOrDefault();
+        }
+
+        public async Task DeletePostAsync(Post post)
+        {
+            context.Posts.Remove(post);
+
+            await commentService.DeleteCommentsAsync(post);
+
+            await context.SaveChangesAsync();
         }
     }
 }

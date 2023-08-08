@@ -9,5 +9,7 @@ namespace Writed.Services.Interfaces
         public Task<Comment> GetCommentAsync(string id);
 
         public Task<List<Comment>> GetCommentsAsync(Post post);
+
+        public Task DeleteCommentsAsync(Post post);
     }
 }
